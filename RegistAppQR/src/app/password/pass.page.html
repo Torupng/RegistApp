@@ -1,0 +1,42 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar color="medium">
+        <ion-title>RegistApp</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="goToLogin()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header class="ion-no-border">
+        <ion-toolbar class=" ion-text-center">
+            <ion-title size="large">Bienvenido!</ion-title>
+        </ion-toolbar>
+        Cambio de contraseña <br>
+        Usuario ingresado: {{ username }}
+    </ion-header>
+
+    <ion-list>
+        <ion-item>
+            <ion-input label="Nueva contraseña" [(ngModel)]="newPass"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input label="Confirme contraseña" [(ngModel)]="passConf  "></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-button (click)="clean()">Limpiar</ion-button>
+    <ion-button [routerLink]="['/login']">Confirmar</ion-button>
+    
+</ion-content>
+<ion-footer>
+    <ion-toolbar color="medium">
+        <ion-title size="large">APP desarrollada por --</ion-title>
+    </ion-toolbar>
+</ion-footer>
