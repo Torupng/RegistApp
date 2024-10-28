@@ -7,7 +7,6 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
-import { Usuario } from 'src/app/modelos/usuarios';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +16,6 @@ import { Usuario } from 'src/app/modelos/usuarios';
 export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
-
 
   constructor(public fb: FormBuilder,
     public alertController: AlertController,
@@ -33,25 +31,29 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   
-  async ingresar(){
+  async ingresar() {
     var f = this.formularioLogin.value;
-
-    const storedUser = localStorage.getItem('user');
-    const user = storedUser ? JSON.parse(storedUser) : null;
-
-    if(user.usuario == f.usuario && user.contrasenia == f.contrasenia){
-      console.log('ingresado');
-      localStorage.setItem('ingresado','true')
-      this.navCtrl.navigateRoot('principal')
-    }else{
-        const alert = await this.alertController.create({
-          header: 'Datos Incorrectos',
-          message: 'Contraseña y/o usuario incorrecto',
-          buttons: ['Aceptar'],
-        });
+  
+    // Obtener el array de cuentas guardadas
+    const cuentasGuardadas = JSON.parse(localStorage.getItem('cuentas') || '[]');
     
-        await alert.present();
-        return;
-      }
+    // Buscar la cuenta que coincide con los datos ingresados
+    const cuentaValida = cuentasGuardadas.find(
+      (cuenta: { usuario: string; contrasenia: string }) => 
+        cuenta.usuario === f.usuario && cuenta.contrasenia === f.contrasenia
+    );
+  
+    if (cuentaValida) {
+      localStorage.setItem('ingresado','true')
+      console.log('Ingresado');
+      location.reload();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Datos Incorrectos',
+        message: 'Usuario o contraseña incorrectos.',
+        buttons: ['Aceptar'],
+      });
+      await alert.present();
     }
-  }
+  }  
+}

@@ -1,5 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>principal</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>AsistenciaApp</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-button (click)="cerrarSesion()" class="ion-margin-top amarillo" expand="block">
+    Cerrar sesión
+ </ion-button>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+</div>

@@ -24,29 +24,49 @@ export class RegistroPage implements OnInit {
   ngOnInit() {
   }
 
-  async guardar(){
+  async guardar() {
     var f = this.formularioRegistro.value;
-
-    if(this.formularioRegistro.invalid){
+  
+    if (this.formularioRegistro.invalid) {
       const alert = await this.alertController.create({
         header: 'Datos Incompletos',
         message: 'Faltan campos que completar.',
         buttons: ['Aceptar'],
       });
-  
       await alert.present();
       return;
     }
-
-    var user = {
+  
+    const nuevaCuenta = {
       usuario: f.usuario,
       contrasenia: f.contrasenia
-    }
-
-    localStorage.setItem('user',JSON.stringify(user))
-
+    };
+  
+    //LLamamos al array que tiene las cuentas guardadas o agregadas
+    const cuentasGuardadas = JSON.parse(localStorage.getItem('cuentas') || '[]');
+    
+    //Añadimos la cuenta nueva al array y le damos el valor de INGRESADO en true para poder hacer uso de los guards
     localStorage.setItem('ingresado','true')
-    this.navCtrl.navigateRoot('principal')
-  }
+    cuentasGuardadas.push(nuevaCuenta);
+  
+    //Guardamos el array con la cuenta nueva en el localStorage
+    localStorage.setItem('cuentas', JSON.stringify(cuentasGuardadas));
+    console.log('Cuenta guardada');
 
+    //Cuenta creada con mensaje de alerta para informar al usuario
+    const alert = await this.alertController.create({
+      header: 'Cuenta Creada!',
+      message: 'Te has registrado con exito!',
+      buttons: [
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.navCtrl.navigateRoot('principal'); //Redireccion a la pagina /principal
+          }
+        }
+      ],
+    });
+    
+    await alert.present();
+  }
 }

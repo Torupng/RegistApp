@@ -15,6 +15,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'cambio-contrasenia',
+    redirectTo: 'cambio-contrasenia',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     redirectTo: 'login',
     pathMatch: 'full'
@@ -47,6 +52,11 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule),
+    canActivate: [NoIngresadoGuard]
+  },
+  {
+    path: 'cambio-contrasenia',
+    loadChildren: () => import('./pages/cambioContrasenia/cambio-contrasenia.module').then( m => m.CambioContraseniaPageModule),
     canActivate: [NoIngresadoGuard]
   },
 ];
