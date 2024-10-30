@@ -30,11 +30,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'cuenta',
+    redirectTo: 'cuenta',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: 'e404', //este path SIEMPRE DEBE SER EL ULTIMO
     pathMatch: 'full'
   },
-  
+
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
@@ -58,6 +63,11 @@ const routes: Routes = [
     path: 'cambio-contrasenia',
     loadChildren: () => import('./pages/cambioContrasenia/cambio-contrasenia.module').then( m => m.CambioContraseniaPageModule),
     canActivate: [NoIngresadoGuard]
+  },
+  {
+    path: 'cuenta',
+    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule),
+    canActivate: [IngresadoGuard]
   },
 ];
 

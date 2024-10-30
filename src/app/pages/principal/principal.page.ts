@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import {WeatherService} from "../../weather.service";
 
 @Component({
   selector: 'app-principal',
@@ -8,12 +9,31 @@ import { AlertController } from '@ionic/angular';
 })
 export class PrincipalPage implements OnInit {
 
+  weatherData: any;
 
-  constructor(public alertController: AlertController) { }
+  constructor(public alertController: AlertController, private weatherService: WeatherService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getWeather(''); //buscador en base al nombre de la zona o pais QUE NO FUNCIONOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO lo revisare en un futuro
+  }
 
-  async cerrarSesion() {  
+  //API CLIMA
+
+  getWeather(city: string) {
+    this.weatherService.getWeather(city).subscribe(
+      data => {
+        this.weatherData = data;
+        console.log(this.weatherData); //verifica que los datos se están recibiendo
+      },
+      error => {
+        console.error('Error clima:', error);
+      }
+    );
+  }
+
+  //Cerrar sesion y cosas
+
+  async cerrarSesion() {
     const alert = await this.alertController.create({
       header: 'Cerrar sesión',
       message: '¿Quieres cerrar sesión?',
