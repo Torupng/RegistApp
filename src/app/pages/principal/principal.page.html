@@ -1,4 +1,4 @@
-<ion-menu contentId="main-content">
+<ion-menu contentId="main-content" >
   <ion-header>
     <ion-toolbar>
       <ion-title>AsistenciaApp</ion-title>
@@ -10,15 +10,20 @@
         Cuenta
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
       </ion-button>
+      <ion-button routerLink="/mapa" class=" duocuc" expand="block">
+        Mapa
+        <ion-icon name="map-outline" slot="start"></ion-icon>
+      </ion-button>
     </ion-menu-toggle>
   </ion-content>
   <ion-button (click)="cerrarSesion()" class=" duocuc" expand="block">
     Cerrar sesión
-    <ion-icon slot="start" name="log-in-outline"></ion-icon>
+    <ion-icon name="exit-outline" slot="start"></ion-icon>
  </ion-button>
 </ion-menu>
+
 <div class="ion-page" id="main-content">
-  <ion-header>
+  <ion-header class="ion-no-border" >
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
@@ -26,6 +31,7 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <ion-card class="duocuc" *ngIf="weatherData">
     <ion-card-header>
       <ion-card-title class="duocuc">Clima en {{ weatherData.name }}</ion-card-title>

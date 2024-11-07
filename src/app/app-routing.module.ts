@@ -35,6 +35,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'mapa',
+    redirectTo: 'mapa',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: 'e404', //este path SIEMPRE DEBE SER EL ULTIMO
     pathMatch: 'full'
@@ -67,6 +72,11 @@ const routes: Routes = [
   {
     path: 'cuenta',
     loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule),
+    canActivate: [IngresadoGuard]
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule),
     canActivate: [IngresadoGuard]
   },
 ];
