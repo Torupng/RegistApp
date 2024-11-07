@@ -17,4 +17,6 @@ import { MapaPage } from './mapa.page';
   ],
   declarations: [MapaPage]
 })
-export class MapaPageModule {}
+export class MapaPageModule {
+  
+}
