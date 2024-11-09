@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WeatherService {
-  private apiKey = '47665d6cbd43b29b6127bbbdae2d5149';
-  private apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=-33.5&lon=-70.6167&appid=47665d6cbd43b29b6127bbbdae2d5149&units=metric&lang=es';
+  private apiKey = 'API';
+  private apiUrl = 'Www';
 
   constructor(private http: HttpClient) { }
 
