@@ -71,7 +71,7 @@
         <img src="assets/images/scanner_qr.png">
 
         <ion-col size="6">
-          <ion-button class="submit" expand="block">
+          <ion-button (click)="startScan()" class="submit" expand="block">
             Scanear QR
             <ion-icon slot="end" name="scan-outline"></ion-icon>
           </ion-button>
@@ -84,6 +84,13 @@
         message="Se ah registrado su asistencia"
         [buttons]="alertButtons"
         ></ion-alert> -->
+
+        <ion-item class="result" *ngIf="scanResult" lines="none">
+          <ion-label>
+            <p>Result</p>
+            <div>{{scanResult}}</div>
+          </ion-label>
+        </ion-item>
       </div>
     </div>
 

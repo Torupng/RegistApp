@@ -14,15 +14,13 @@ export class PrincipalPage implements OnInit {
 
   weatherData: any;
 
-  segment = 'generar';
+  segment = 'scan';
   scanResult = '';
 
   constructor(public alertController: AlertController, private weatherService: WeatherService, private modalController: ModalController, private platform: Platform) { }
 
   ngOnInit() {
     this.getWeather(''); //buscador en base al nombre de la zona o pais QUE NO FUNCIONOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO lo revisare en un futuro
-    
-    
     
   }
 
